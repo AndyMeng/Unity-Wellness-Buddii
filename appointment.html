@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Pharmacist - Unity Health Buddii</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .time-slot.selected {
+            background-color: #4f46e5;
+            color: white;
+            font-weight: 600;
+        }
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        .modal-content {
+            transition: transform 0.25s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Main Container -->
+    <div class="container mx-auto max-w-lg min-h-screen bg-white shadow-lg">
+
+        <!-- Header -->
+        <header class="bg-white p-4 shadow-sm sticky top-0 z-10">
+            <div class="flex items-center">
+                <a href="index.html" class="text-gray-600 hover:text-indigo-600">
+                    <i class="fas fa-chevron-left text-xl"></i>
+                </a>
+                <h1 class="text-xl font-bold text-gray-800 text-center flex-grow">Book a Pharmacist</h1>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="p-6 pb-24">
+            
+            <!-- Step 1: Select Store -->
+            <div class="mb-6">
+                <label for="store-select" class="block text-lg font-semibold text-gray-800 mb-2"><span class="gradient-bg text-white rounded-full w-8 h-8 inline-flex items-center justify-center mr-2">1</span> Select a Store</label>
+                <select id="store-select" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    <option>Unity @ Jurong Point</option>
+                    <option>Unity @ NEX Serangoon</option>
+                    <option>Unity @ VivoCity</option>
+                    <option>Unity @ Tampines Mall</option>
+                </select>
+            </div>
+
+            <!-- Step 2: Choose Date -->
+            <div class="mb-6">
+                <label for="date-picker" class="block text-lg font-semibold text-gray-800 mb-2"><span class="gradient-bg text-white rounded-full w-8 h-8 inline-flex items-center justify-center mr-2">2</span> Choose a Date</label>
+                <input type="date" id="date-picker" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <!-- Step 3: Select Time -->
+            <div class="mb-8">
+                <h2 class="block text-lg font-semibold text-gray-800 mb-2"><span class="gradient-bg text-white rounded-full w-8 h-8 inline-flex items-center justify-center mr-2">3</span> Select a Time</h2>
+                <div id="time-slots" class="grid grid-cols-3 gap-3">
+                    <button class="time-slot bg-gray-100 text-gray-700 font-medium py-3 rounded-lg hover:bg-indigo-100">09:00 AM</button>
+                    <button class="time-slot bg-gray-100 text-gray-700 font-medium py-3 rounded-lg hover:bg-indigo-100">09:30 AM</button>
+                    <button class="time-slot bg-gray-300 text-gray-500 font-medium py-3 rounded-lg cursor-not-allowed" disabled>10:00 AM</button>
+                    <button class="time-slot bg-gray-100 text-gray-700 font-medium py-3 rounded-lg hover:bg-indigo-100">10:30 AM</button>
+                    <button class="time-slot bg-gray-100 text-gray-700 font-medium py-3 rounded-lg hover:bg-indigo-100">11:00 AM</button>
+                    <button class="time-slot bg-gray-100 text-gray-700 font-medium py-3 rounded-lg hover:bg-indigo-100">02:00 PM</button>
+                    <button class="time-slot bg-gray-100 text-gray-700 font-medium py-3 rounded-lg hover:bg-indigo-100">02:30 PM</button>
+                    <button class="time-slot bg-gray-300 text-gray-500 font-medium py-3 rounded-lg cursor-not-allowed" disabled>03:00 PM</button>
+                    <button class="time-slot bg-gray-100 text-gray-700 font-medium py-3 rounded-lg hover:bg-indigo-100">03:30 PM</button>
+                </div>
+            </div>
+            
+            <!-- Confirmation Button -->
+            <button id="confirm-booking-btn" class="w-full gradient-bg text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50" disabled>
+                Confirm Appointment
+            </button>
+        </main>
+        
+        <!-- Bottom Navigation Bar -->
+        <nav class="fixed bottom-0 left-0 right-0 max-w-lg mx-auto bg-white border-t border-gray-200 flex justify-around p-2">
+            <a href="index.html" class="text-center text-gray-500 hover:text-indigo-600 flex flex-col items-center w-full py-2 rounded-lg transition-colors">
+                <i class="fas fa-home text-2xl"></i>
+                <span class="text-xs">Home</span>
+            </a>
+            <a href="nutrition.html" class="text-center text-gray-500 hover:text-indigo-600 flex flex-col items-center w-full py-2 rounded-lg transition-colors">
+                <i class="fas fa-chart-pie text-2xl"></i>
+                <span class="text-xs">Nutrition</span>
+            </a>
+            <a href="recommendations.html" class="text-center text-gray-500 hover:text-indigo-600 flex flex-col items-center w-full py-2 rounded-lg transition-colors">
+                <i class="fas fa-pills text-2xl"></i>
+                <span class="text-xs">Products</span>
+            </a>
+             <a href="coupons.html" class="text-center text-gray-500 hover:text-indigo-600 flex flex-col items-center w-full py-2 rounded-lg transition-colors">
+                <i class="fas fa-ticket-alt text-2xl"></i>
+                <span class="text-xs">Coupons</span>
+            </a>
+            <a href="appointment.html" class="text-center text-indigo-600 flex flex-col items-center w-full py-2 rounded-lg">
+                <i class="fas fa-user-md text-2xl"></i>
+                <span class="text-xs font-medium">Pharmacist</span>
+            </a>
+        </nav>
+
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div class="modal-content bg-white rounded-2xl shadow-xl p-8 text-center max-w-sm mx-auto transform scale-95">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-green-500 text-3xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Appointment Booked!</h2>
+            <p class="text-gray-600 mb-6">Your consultation is confirmed. A reminder will be sent to you 24 hours before your appointment.</p>
+            <p class="text-sm text-gray-700 bg-gray-100 p-3 rounded-lg">
+                <strong>Store:</strong> <span id="conf-store"></span><br>
+                <strong>Date:</strong> <span id="conf-date"></span><br>
+                <strong>Time:</strong> <span id="conf-time"></span>
+            </p>
+            <button id="close-modal-btn" class="w-full mt-6 gradient-bg text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition-opacity">
+                Done
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const timeSlots = document.querySelectorAll('.time-slot:not([disabled])');
+        const confirmBtn = document.getElementById('confirm-booking-btn');
+        const modal = document.getElementById('confirmation-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        let selectedTime = null;
+
+        // Set min date for date picker to today
+        const datePicker = document.getElementById('date-picker');
+        datePicker.min = new Date().toISOString().split("T")[0];
+
+        function checkFormCompletion() {
+            if (datePicker.value && selectedTime) {
+                confirmBtn.disabled = false;
+            } else {
+                confirmBtn.disabled = true;
+            }
+        }
+
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                timeSlots.forEach(s => s.classList.remove('selected'));
+                slot.classList.add('selected');
+                selectedTime = slot.textContent;
+                checkFormCompletion();
+            });
+        });
+
+        datePicker.addEventListener('change', checkFormCompletion);
+
+        confirmBtn.addEventListener('click', () => {
+            const store = document.getElementById('store-select').value;
+            const date = new Date(datePicker.value).toLocaleDateString('en-SG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            
+            document.getElementById('conf-store').textContent = store;
+            document.getElementById('conf-date').textContent = date;
+            document.getElementById('conf-time').textContent = selectedTime;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('.modal-content').classList.remove('scale-95');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('.modal-content').classList.add('scale-95');
+            // Reset form
+            datePicker.value = '';
+            timeSlots.forEach(s => s.classList.remove('selected'));
+            selectedTime = null;
+            checkFormCompletion();
+        });
+    </script>
+
+</body>
+</html>
